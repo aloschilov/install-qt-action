@@ -134,6 +134,7 @@ jobs:
         if: ${{ !matrix.aqtversion && matrix.qt.version }}
         uses: ./
         with:
+          base: ${{ matrix.base }}
           dir: ${{ matrix.dir }}
           modules: ${{ matrix.qt.modules }}
           version: ${{ matrix.qt.requested }}
