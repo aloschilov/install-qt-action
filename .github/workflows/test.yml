@@ -28,6 +28,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        base:
+          - null
+          - https://mirror.yandex.ru/mirrors/qt.io/
         os:
           - ubuntu-24.04
           - ubuntu-22.04
@@ -141,6 +144,7 @@ jobs:
         if: ${{ matrix.aqtversion && matrix.qt.version }}
         uses: ./
         with:
+          base: ${{ matrix.base }}
           aqtversion: ${{ matrix.aqtversion }}
           dir: ${{ matrix.dir }}
           modules: ${{ matrix.qt.modules }}
