@@ -291,6 +291,7 @@ class Inputs {
         this.arch,
         this.version,
         this.dir,
+        this.base,
         this.py7zrVersion,
         this.aqtSource,
         this.aqtVersion,

@@ -29,7 +29,6 @@ jobs:
       fail-fast: false
       matrix:
         base:
-          - null
           - https://mirror.yandex.ru/mirrors/qt.io/
         os:
           - ubuntu-24.04
