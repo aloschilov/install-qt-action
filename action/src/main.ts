@@ -413,6 +413,8 @@ const run = async (): Promise<void> => {
     // aqtinstall will automatically determine if this is necessary.
     const autodesktop = (await isAutodesktopSupported()) ? ["--autodesktop"] : [];
 
+    core.debug(`Base URL: ${inputs.base || "(using default mirror)"}`);
+
     // Install Qt
     if (inputs.isInstallQtBinaries) {
       if (inputs.useOfficial && inputs.email && inputs.pw) {
@@ -422,7 +424,7 @@ const run = async (): Promise<void> => {
           ...(inputs.arch ? [inputs.arch] : []),
           inputs.version,
           ...["--outputdir", inputs.dir],
-          ...["--base", inputs.base],
+          ...(inputs.base ? ["--base", inputs.base] : []),
           ...["--email", inputs.email],
           ...["--pw", inputs.pw],
           ...flaggedList("--modules", inputs.modules),
@@ -438,7 +440,7 @@ const run = async (): Promise<void> => {
           ...(inputs.arch ? [inputs.arch] : []),
           ...autodesktop,
           ...["--outputdir", inputs.dir],
-          ...["--base", inputs.base],
+          ...(inputs.base ? ["--base", inputs.base] : []),
           ...flaggedList("--modules", inputs.modules),
           ...flaggedList("--archives", inputs.archives),
           ...inputs.extra,
