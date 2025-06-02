@@ -230,6 +230,8 @@ class Inputs {
 
     this.base = core.getInput("base");
 
+    core.debug(`Base URL in constructor: ${this.base || "(using default mirror)"}`);
+
     this.modules = Inputs.getStringArrayInput("modules");
 
     this.archives = Inputs.getStringArrayInput("archives");
