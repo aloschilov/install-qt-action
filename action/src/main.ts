@@ -114,6 +114,7 @@ class Inputs {
   readonly version: string;
   readonly arch: string;
   readonly dir: string;
+  readonly base: string;
   readonly modules: string[];
   readonly archives: string[];
   readonly tools: string[];
@@ -226,6 +227,8 @@ class Inputs {
       throw TypeError(`"dir" input may not be empty`);
     }
     this.dir = path.resolve(dir, "Qt");
+
+    this.base = core.getInput("base");
 
     this.modules = Inputs.getStringArrayInput("modules");
 
@@ -418,6 +421,7 @@ const run = async (): Promise<void> => {
           ...(inputs.arch ? [inputs.arch] : []),
           inputs.version,
           ...["--outputdir", inputs.dir],
+          ...["--base", inputs.base],
           ...["--email", inputs.email],
           ...["--pw", inputs.pw],
           ...flaggedList("--modules", inputs.modules),
@@ -433,6 +437,7 @@ const run = async (): Promise<void> => {
           ...(inputs.arch ? [inputs.arch] : []),
           ...autodesktop,
           ...["--outputdir", inputs.dir],
+          ...["--base", inputs.base],
           ...flaggedList("--modules", inputs.modules),
           ...flaggedList("--archives", inputs.archives),
           ...inputs.extra,
